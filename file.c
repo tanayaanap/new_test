@@ -25,7 +25,7 @@ int main() {
             }
             result = num1 / num2;
             break;
-        
+	case '^': result = pow(num1,num2); break;        
         default: printf("Invalid operator.\n"); return 1;
     }
 
