@@ -1,34 +1,31 @@
 #include <stdio.h>
-#include <math.h>
+#include <stdlib.h>
 
-int main() {
-    double num1, num2, result;
-    char op;
+void hexadecimal_calculator() {
+    char hex1[20], hex2[20];
+    int num1, num2, result;
+    char operator;
 
-    printf("Enter first number: ");
-    scanf("%lf", &num1);
+    printf("Enter first hexadecimal number: ");
+    scanf("%s", hex1);
+    printf("Enter operator (+, -, *, /): ");
+    scanf(" %c", &operator);
+    printf("Enter second hexadecimal number: ");
+    scanf("%s", hex2);
 
-    printf("Enter operator (+, -, *, /, ^): ");
-    scanf(" %c", &op);
+    num1 = (int)strtol(hex1, NULL, 16);
+    num2 = (int)strtol(hex2, NULL, 16);
 
-    printf("Enter second number: ");
-    scanf("%lf", &num2);
-
-    switch(op) {
+    switch (operator) {
         case '+': result = num1 + num2; break;
         case '-': result = num1 - num2; break;
         case '*': result = num1 * num2; break;
-        case '/':
-            if(num2 == 0) {
-                printf("Error: Division by zero!\n");
-                return 1;
-            }
-            result = num1 / num2;
+        case '/': 
+            if (num2 != 0) result = num1 / num2;
+            else { printf("Division by zero error.\n"); return; }
             break;
-	case '^': result = pow(num1,num2); break;        
-        default: printf("Invalid operator.\n"); return 1;
+        default: printf("Invalid operator.\n"); return;
     }
 
-    printf("Result: %.2lf\n", result);
-    return 0;
+    printf("Result in hexadecimal: %X\n", result);
 }
